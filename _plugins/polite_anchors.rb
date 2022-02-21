@@ -86,7 +86,7 @@ module Jekyll
                     if inside_blacklist
                         next
                     end 
-                    # generate link/header slug. !! THIS REGEX IS INCOMPLETE, COULD PROBABLY BE A LOT BETTER !!
+                    # generate link/header slug. This isn't a good regex/pattern match, but it works fine.
                     # I want to avoid an additional include/gem for slugifying the heading content.
                     slug = head.content.downcase.gsub(/[\s.\/_]/, ' ').strip.tr(' ', '-').gsub(/[^\w-]/, '').squeeze(' ')
                     if head['id'] != '' and head['id'] != nil
@@ -125,8 +125,6 @@ module Jekyll
                 end
             end
             # Return complete HTML document at the end. 
-            # Serializing the document may result in some issues with larger HTML? 
-            # To be tested. (06/02/22: seems to work just fine, tested on a lab page for COMP2300 webpage.)
             doc.serialize
         end
     end
